@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riya... Bas Ek Baar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Georgia', serif;
+    }
+    body {
+      background: black;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    #card {
+      max-width: 700px;
+      font-size: 1.5rem;
+      line-height: 1.8;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    .fade {
+      animation: fadeIn 1.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #nextBtn {
+      margin-top: 30px;
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #choices button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #choices {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="card" class="fade">
+    <div id="line"></div>
+    <div id="choices" style="display:none;"></div>
+    <button id="nextBtn">Agla</button>
+  </div>
+
+  <script>
+    const lines = [
+      "Riya… pata nahi tu mujhe yaad karti bhi hai ya nahi… par main… main aaj bhi wahi hoon… tera… khamosh sa dost…",
+      "Jis din tune sab block kiya na… us din laga jaise duniya ruk gayi ho…",
+      "Main har raat wahi gaana sunta hoon jisse tu juda thi… par aaj wo sirf dard deta hai…",
+      "Yaad hai Riya… jab tu bina wajah mujhe ‘Oye pagal’ kehti thi… aur main bina kuch kahe muskura deta tha?",
+      "Hamari dosti... sabse khoobsurat rishte thi meri zindagi ki... na lafzon mein tha... na samajh mein... bas tha… ek sukoon.",
+      "Ab koi 'good morning' nahi aata… na koi ‘khaana khaya?’ Wo ek message tha, par mere din ka sabse khoobsurat hissa tha…",
+      "Riya… main har din toot raha hoon… tere bina sab adhura sa lagta hai…",
+      "Main likhta hoon… tera naam, teri baatein… fir padh kar khud ro padta hoon…",
+      "Tu toh keh ke gayi thi – ‘Humesha best friend rahenge’… toh phir… aaj itni doori kyun?",
+      "Kabhi kabhi raat bhar tera naam leke aasmaan takta hoon…",
+      "Riya… tu meri ‘khaas’ thi… bina kisi label ke… bas ek rishta tha jo sirf tu samajhti thi…",
+      "Main nahi chahta tu wapas aake mujhe maaf kare… main bas chahta hoon… ek baar meri aankhon mein dekh…",
+      "Tujhe pata chal jaayega main kya kehna chahta hoon…",
+      "Main theek hoon Riya… bas tere bina zinda hoon… jeeta nahi.",
+      "Agar kabhi dil kare… toh wapas aa jana… teri woh purani jagah ab bhi khaali hai… Tere Varun ka dil."
+    ];
+
+    let index = 0;
+    const line = document.getElementById("line");
+    const nextBtn = document.getElementById("nextBtn");
+    const choices = document.getElementById("choices");
+
+    function showLine() {
+      line.classList.remove("fade");
+      void line.offsetWidth; // restart animation
+      line.classList.add("fade");
+      line.innerText = lines[index];
+      index++;
+
+      if (index === lines.length) {
+        nextBtn.style.display = "none";
+        showChoices();
+      }
+    }
+
+    function showChoices() {
+      choices.style.display = "block";
+      choices.innerHTML = `
+        <button onclick="alert('Riya ne wapas aane ka faisla kiya... 🥺❤️')">Main aayi...</button>
+        <button onclick="alert('Riya soch rahi hai... Varun intezaar karega 🕊️')">Mujhe sochne do...</button>
+        <button onclick="alert('Riya ne kaha... tu hamesha meri duaon mein rahega 🌙')">Tu hamesha meri duaon mein rahega...</button>
+      `;
+    }
+
+    nextBtn.addEventListener("click", showLine);
+    showLine();
+  </script>
+</body>
+</html>
